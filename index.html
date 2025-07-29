@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Exemplar Library</title>
+    <!-- Import the Figtree typeface from Bunny Fonts.  This open‑source CDN
+         serves the font files directly without requiring any JavaScript.  See
+         https://fonts.bunny.net/css?family=figtree for details.  The
+         weights imported here mirror the brand specification – normal text
+         defaults to 400, bold headings use 600/700. -->
+    <link
+      href="https://fonts.bunny.net/css?family=figtree:400,500,600,700"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <h1 class="site-title">AI Exemplar Library</h1>
+      <p class="site-subtitle">
+        Discover classroom‑tested examples of artificial intelligence across
+        subjects and grade levels.
+      </p>
+    </header>
+
+    <!-- Filter section: drop downs for grade level and subject plus a keyword
+         search.  A visually‑hidden label is provided for accessibility. -->
+    <section id="filters" class="filters">
+      <div class="filter-group">
+        <label for="gradeFilter">Grade level</label>
+        <select id="gradeFilter" name="gradeFilter">
+          <option value="">All grades</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="subjectFilter">Subject area</label>
+        <select id="subjectFilter" name="subjectFilter">
+          <option value="">All subjects</option>
+        </select>
+      </div>
+      <div class="filter-group search-group">
+        <label for="searchInput" class="visually-hidden">Search</label>
+        <input
+          type="text"
+          id="searchInput"
+          name="searchInput"
+          placeholder="Search by keyword or strategy..."
+        />
+      </div>
+    </section>
+
+    <!-- Container for exemplar cards.  Cards will be injected here via
+         JavaScript after the dataset is loaded and filters are applied. -->
+    <main id="cardsContainer" class="cards-container"></main>
+
+    <!-- Modal overlay for displaying full exemplar details.  The modal is
+         hidden by default and becomes visible when a card is clicked. -->
+    <div id="modal" class="modal" aria-hidden="true">
+      <div class="modal-content" role="dialog" aria-modal="true">
+        <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+        <div id="modalBody"></div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
