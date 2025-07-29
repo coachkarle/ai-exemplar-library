@@ -491,6 +491,28 @@ function openModal(rec) {
   sfTag.textContent = rec.StudentFacing ? 'Student Facing' : 'Teacher Only';
   tagContainer.appendChild(sfTag);
   body.appendChild(tagContainer);
+
+  // Description: display the first one or two paragraphs in the modal.  Many
+  // description fields in the dataset contain multiple paragraphs separated
+  // by blank lines.  Showing only the first two paragraphs keeps the
+  // modal concise while providing enough context.  If the description
+  // contains fewer than two paragraphs, we show all available text.
+  if (rec.Description) {
+    const paragraphs = rec.Description.split(/\n+/).filter(p => p.trim());
+    if (paragraphs.length) {
+      const descSection = document.createElement('div');
+      descSection.className = 'modal-section';
+      const descHeader = document.createElement('h3');
+      descHeader.textContent = 'Description';
+      descSection.appendChild(descHeader);
+      paragraphs.slice(0, 2).forEach(paragraph => {
+        const pElem = document.createElement('p');
+        pElem.textContent = paragraph.trim();
+        descSection.appendChild(pElem);
+      });
+      body.appendChild(descSection);
+    }
+  }
   // Sections
   body.appendChild(createSection('Grade Levels', rec.GradeLevels.join(', ')));
   body.appendChild(createSection('Subject Area', rec.SubjectArea.join(', ')));
